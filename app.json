@@ -1,13 +1,13 @@
 {
-  "name": "TG File Share/Sharing Bot Modified by Mayhem™",
-  "description": "file sharing bot store posts and it can access by special links Modified by Mayhem™",
+  "name": "TG File Share/Sharing Bot",
+  "description": "file sharing bot store posts and it can access by special links",
   "keywords": [
     "telegram",
     "file",
     "sharing"
   ],
-  "repository": "https://github.com/CodeXBotz/File-Sharing-Bot",
-  "logo": "https://telegra.ph//file/de8c02dddd74c038894f2.jpg",
+  "repository": "https://github.com/Ahmed789l/new-2-fsub",
+  "logo": "https://graph.org/file/6ceef6a98b82b0e0e2f03.jpg",
   "env": {
     "TG_BOT_TOKEN": {
       "description": "Your Bot token, Get it from @Botfather",
@@ -15,7 +15,7 @@
     },
     "OWNER_ID": {
       "description": "An integer of consisting of your owner ID",
-      "value": "1250450587"
+      "value": "6727550037"
     },
     "APP_ID":{
       "description": "your app id, take it from my.telegram.org",
@@ -23,11 +23,11 @@
     },
     "DATABASE_URL": {
       "description": "Paste your mongo db url",
-      "value": "url"
+      "value": "mongodb+srv://sagatobots00001:sagatobots100@cluster00001.vgdshkw.mongodb.net/?retryWrites=true&w=majority&appName=Cluster00001"
     },
     "DATABASE_NAME":{
       "description": "Enter your DATABASE_NAME ",
-      "value": "filesharexbot"
+      "value": "Cluster00001"
     },
     "API_HASH":{
       "description": "your api hash, take it from my.telegram.org",
@@ -35,31 +35,23 @@
     },
     "CHANNEL_ID":{
       "description": "make a channel (database channel), then make the bot as admin in channel, and it's id",
-      "value": "-100"
+      "value": "-1002031978775"
     },
-    "FORCESUB_CHANNEL":{
-      "description": "id of the first channel, if you want enable force sub feature else put 0",
-      "value": "0"
-     },
-    "FORCESUB_CHANNEL2":{
-      "description": "id of the second channel, if you want enable force sub feature else put 0",
-      "value": "0"  
-      },
-    "START_MSG": {
-      "description": "Optional: start message of bot, use HTML parsemode format",
-      "value": "𝐇𝐢 𝐃𝐮𝐝𝐞.. {first}\n\n𝐈 𝐚𝐦 𝐚 𝐟𝐢𝐥𝐞 𝐬𝐭𝐨𝐫𝐞 𝐛𝐨𝐭\n𝐘𝐨𝐮 𝐜𝐚𝐧 𝐚𝐜𝐜𝐞𝐬𝐬 𝐟𝐢𝐥𝐞𝐬 𝐭𝐡𝐫𝐨𝐮𝐠𝐡 𝐚 𝐬𝐩𝐞𝐜𝐢𝐟𝐢𝐜 𝐥𝐢𝐧𝐤..!"
+    "FORCE_SUB_CHANNEL":{
+      "description": "id of the channel or group, if you want enable force sub feature else put 0",
+      "value": "-1002111343572"
     },
-    "FORCE_SUB_MESSAGE": {
-      "description": "Optional: Force Sub message of bot, use HTML parsemode format",
-      "value": "𝐒𝐨𝐫𝐫𝐲 𝐒𝐢𝐫/𝐌𝐚𝐦 𝐲𝐨𝐮 𝐡𝐚𝐯𝐞 𝐣𝐨𝐢𝐧 𝐦𝐲 𝐜𝐡𝐚𝐧𝐧𝐞𝐥𝐬 𝐟𝐢𝐫𝐬𝐭 𝐭𝐨 𝐚𝐜𝐜𝐞𝐬𝐬 𝐟𝐢𝐥𝐞𝐬..\n\n𝐒𝐨 𝐩𝐥𝐞𝐚𝐬𝐞 𝐣𝐨𝐢𝐧 𝐦𝐲 𝐜𝐡𝐚𝐧𝐧𝐞𝐥𝐬 𝐟𝐢𝐫𝐬𝐭 𝐚𝐧𝐝 𝐭𝐫𝐲 𝐚𝐠𝐚𝐢𝐧....!"
+    "FORCE_SUB_CHANNEL2":{
+      "description": "id of the channel or group, if you want enable force sub feature else put 0",
+      "value": "-1002059817947"
     },
     "ADMINS": {
       "description": "A space separated list of user_ids of Admins, they can only create links",
-      "value": "",
+      "value": "6727550037",
       "required": false
     },
     "PROTECT_CONTENT": {
-      "description": "Protect contents doesn't forward else False",
+      "description": "Protect contents from getting forwarded",
       "value": "False",
       "required": false
     }
@@ -76,4 +68,3 @@
     }
   }
 }
-
