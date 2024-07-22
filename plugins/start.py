@@ -6,7 +6,7 @@ from pyrogram.types import Message, InlineKeyboardMarkup, InlineKeyboardButton, 
 from pyrogram.errors import FloodWait, UserIsBlocked, InputUserDeactivated
 
 from bot import Bot
-from config import ADMINS, FORCE_MSG, START_MSG, CUSTOM_CAPTION, DISABLE_CHANNEL_BUTTON, PROTECT_CONTENT
+from config import ADMINS, OWNER_ID, FORCE_MSG, START_MSG, CUSTOM_CAPTION, DISABLE_CHANNEL_BUTTON, PROTECT_CONTENT
 from helper_func import subscribed, encode, decode, get_messages
 from database.database import add_user, del_user, full_userbase, present_user
 
@@ -50,11 +50,11 @@ async def start_command(client: Client, message: Message):
                 ids = [int(int(argument[1]) / abs(client.db_channel.id))]
             except:
                 return
-        temp_msg = await message.reply("Wait Dude...")
+        temp_msg = await message.reply("Wait A Second...")
         try:
             messages = await get_messages(client, ids)
         except:
-            await message.reply_text("​​​Tʜᴇʀᴇ ɪꜱ ᴅᴇꜰɪɴɪᴛᴇʟʏ ꜱᴏᴍᴇᴛʜɪɴɢ ᴡʀᴏɴɢ​...!")
+            await message.reply_text("Something went wrong..!")
             return
         await temp_msg.delete()
 
@@ -81,20 +81,13 @@ async def start_command(client: Client, message: Message):
         return
     else:
         reply_markup = InlineKeyboardMarkup(
-    [
-        [
-            InlineKeyboardButton("ʜᴇʟᴘ​", callback_data="help")
-        ],
-        [
-            InlineKeyboardButton("Mᴀɪɴ Cʜᴀɴɴᴇʟ", url="https://t.me/Mikey_anime_team"),
-            InlineKeyboardButton("Sᴜᴘᴘᴏʀᴛ Gʀᴏᴜᴘ", url="https://t.me/animehelpcentre")
-        ],
-        [
-            InlineKeyboardButton("ᴄʟᴏꜱᴇ", callback_data="close")
-        ]
-    ]
-)
-
+            [
+                [
+                    InlineKeyboardButton("⚡️ Aʙᴏᴜᴛ", callback_data = "about"),
+                    InlineKeyboardButton('🧑‍💻 Dᴇᴠᴇʟᴏᴘᴇʀs', url='https://t.me/Straw_hats_bot')
+                ]
+            ]
+                )
         await message.reply_text(
             text = START_MSG.format(
                 first = message.from_user.first_name,
@@ -112,9 +105,9 @@ async def start_command(client: Client, message: Message):
 
 #=====================================================================================##
 
-WAIT_MSG = "<b>Working....</b>"
+WAIT_MSG = """"<b>Processing ....</b>"""
 
-REPLY_ERROR = "<code>Use this command as a reply to any telegram message without any spaces.</code>"
+REPLY_ERROR = """<code>Use this command as a reply to any telegram message with out any spaces.</code>"""
 
 #=====================================================================================##
 
@@ -124,16 +117,16 @@ REPLY_ERROR = "<code>Use this command as a reply to any telegram message without
 async def not_joined(client: Client, message: Message):
     buttons = [
         [
-            InlineKeyboardButton(text=" Cʜᴀɴɴᴇʟ 𝟷 ", url=client.invitelink),
-            InlineKeyboardButton(text=" Cʜᴀɴɴᴇʟ 𝟸 ", url=client.invitelink2),
+            InlineKeyboardButton(text="Jᴏɪɴ Cʜᴀɴɴᴇʟ 1", url=client.invitelink),
+            InlineKeyboardButton(text="Jᴏɪɴ Cʜᴀɴɴᴇʟ 2", url=client.invitelink2),
         ]
     ]
     try:
         buttons.append(
             [
                 InlineKeyboardButton(
-                    text='Rᴇʟᴏᴀᴅ',
-                    url=f"https://t.me/{client.username}?start={message.command[1]}"
+                    text = 'Try Again',
+                    url = f"https://t.me/{client.username}?start={message.command[1]}"
                 )
             ]
         )
@@ -141,17 +134,18 @@ async def not_joined(client: Client, message: Message):
         pass
 
     await message.reply(
-        text=FORCE_MSG.format(
-            first=message.from_user.first_name,
-            last=message.from_user.last_name,
-            username=None if not message.from_user.username else '@' + message.from_user.username,
-            mention=message.from_user.mention,
-            id=message.from_user.id
-        ),
-        reply_markup=InlineKeyboardMarkup(buttons),
-        quote=True,
-        disable_web_page_preview=True
+        text = FORCE_MSG.format(
+                first = message.from_user.first_name,
+                last = message.from_user.last_name,
+                username = None if not message.from_user.username else '@' + message.from_user.username,
+                mention = message.from_user.mention,
+                id = message.from_user.id
+            ),
+        reply_markup = InlineKeyboardMarkup(buttons),
+        quote = True,
+        disable_web_page_preview = True
     )
+
 @Bot.on_message(filters.command('users') & filters.private & filters.user(ADMINS))
 async def get_users(client: Bot, message: Message):
     msg = await client.send_message(chat_id=message.chat.id, text=WAIT_MSG)
@@ -169,7 +163,7 @@ async def send_text(client: Bot, message: Message):
         deleted = 0
         unsuccessful = 0
         
-        pls_wait = await message.reply("<i>Broadcast Proccessing Till Wait Dude... </i>")
+        pls_wait = await message.reply("<i>Broadcasting Message.. This will Take Some Time</i>")
         for chat_id in query:
             try:
                 await broadcast_msg.copy(chat_id)
@@ -189,7 +183,7 @@ async def send_text(client: Bot, message: Message):
                 pass
             total += 1
         
-        status = f"""<b><u>ʙʀᴏᴀᴅᴄᴀꜱᴛ...</u>
+        status = f"""<b><u>Broadcast Completed</u>
 
 Total Users: <code>{total}</code>
 Successful: <code>{successful}</code>
@@ -203,3 +197,4 @@ Unsuccessful: <code>{unsuccessful}</code></b>"""
         msg = await message.reply(REPLY_ERROR)
         await asyncio.sleep(8)
         await msg.delete()
+
